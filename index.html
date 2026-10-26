@@ -43,7 +43,7 @@ header .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
 h1{font-family:var(--display);font-weight:800;font-size:clamp(2.6rem,6.2vw,4.6rem);line-height:1.02;letter-spacing:-.025em}
 .lede{margin-top:24px;max-width:34rem;font-size:1.2rem;color:var(--muted)}
 .cta-row{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-.btn{display:inline-block;font-family:var(--display);font-weight:700;font-size:1.05rem;text-decoration:none;background:var(--ink);color:#fff;padding:15px 28px;border-radius:12px;transition:transform .15s ease,background .15s ease}
+.btn{cursor:pointer;border:0;display:inline-block;font-family:var(--display);font-weight:700;font-size:1.05rem;text-decoration:none;background:var(--ink);color:#fff;padding:15px 28px;border-radius:12px;transition:transform .15s ease,background .15s ease}
 .btn:hover{background:#0b1226;transform:translateY(-2px)}
 .btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}
 .btn.ghost:hover{background:var(--ink);color:#fff}
@@ -164,11 +164,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
     <div>
       <h2>About the project</h2>
       <p>UPI has changed how India pays, but many people still do not recognise common scam tricks until it is too late. Our chatbot lets a person describe a suspicious situation and tells them, in plain language, whether it is likely a scam.</p>
-      <p>It covers five real UPI fraud scenarios and has been tested with real people, with honest findings on what they learned.</p>
+      <p>It covers 17 common fraud scenarios and offers AI-powered guidance for suspicious situations not listed in the menu.</p>
     </div>
     <div class="facts">
       <div class="fact"><b>10 billion+</b><span>UPI transactions are processed in India every month.</span></div>
-      <div class="fact"><b>5 scenarios</b><span>Real fraud situations the chatbot can recognise and explain.</span></div>
+      <div class="fact"><b>17 scenarios</b><span>Common fraud situations with guided advice and AI assistance for other cases.</span></div>
       <div class="fact"><b>Before, not after</b><span>Built to be used before someone falls for a scam.</span></div>
     </div>
   </div>
@@ -205,8 +205,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
       <h2>Got a suspicious message?</h2>
       <p>Open the assistant, describe what happened, and get a clear answer before you pay.</p>
     </div>
-    <!-- TODO: replace "#" below with the link to the chatbot -->
-    <a class="btn" href="#" id="chatbot-link" rel="noopener">Open the chatbot</a>
+    <button class="btn" type="button" id="chatbot-link" aria-label="Open the Spot the Scam chatbot">Open the chatbot</button>
   </div>
 </section>
 </main>
@@ -229,7 +228,20 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
     v.className='verdict good';
     v.textContent='Good call. Declining is safe. Report the request in your UPI app and tell someone you trust.';
   });
+  var chatButton = document.getElementById('chatbot-link');
+  chatButton.addEventListener('click', function(){
+    if (window.tidioChatApi && typeof window.tidioChatApi.open === 'function') {
+      window.tidioChatApi.open();
+    } else {
+      chatButton.textContent = 'Chat is loading. Please try again in a moment.';
+    }
+  });
+  document.addEventListener('tidioChat-ready', function(){
+    chatButton.textContent = 'Open the chatbot';
+  });
 })();
 </script>
+<!-- Tidio live chat widget: Spot the Scam -->
+<script src="https://code.tidio.co/uvsqat0eqd0u7nd5w9icj2lucoqlj7ql.js" async></script>
 </body>
 </html>
