@@ -26,7 +26,8 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased}
+<script src="//code.tidio.co/uvsqat0eqd0u7nd5w9icj2lucoqlj7ql.js" async></script>
+  body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:4px}
 .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
@@ -206,7 +207,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
       <p>Open the assistant, describe what happened, and get a clear answer before you pay.</p>
     </div>
     <!-- TODO: replace "#" below with the link to the chatbot -->
-    <a class="btn" href="#" id="chatbot-link" rel="noopener">Open the chatbot</a>
+    <button class="btn" type="button" id="chatbot-link" onclick="window.tidioChatApi && window.tidioChatApi.open()">Open the chatbot</button>
   </div>
 </section>
 </main>
@@ -231,5 +232,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
   });
 })();
 </script>
+
+<!-- Spot the Scam chatbot -->
+<script src="https://code.tidio.co/uvsqat0eqd0u7nd5w9icj2lucoqlj7ql.js" async></script>
+
 </body>
 </html>
